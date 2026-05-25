@@ -1,0 +1,12 @@
+title = "langfuse-mcp gitleaks config"
+
+[allowlist]
+description = "Allowlist for test fixtures and placeholder examples"
+regexes = [
+    # Placeholder examples in .env.example and README
+    '''pk-lf-\.\.\.$''',
+    '''sk-lf-\.\.\.$''',
+    # Test fixture constants — not real credentials
+    '''pk-lf-test-abc123''',
+    '''sk-lf-test-xyz789''',
+]
