@@ -58,7 +58,9 @@ def register(mcp) -> None:
                 params["model"] = model
 
             t0 = time.perf_counter()
-            resp = await client.get("/api/public/generations", params=params)
+            # /api/public/generations removed in Langfuse v3 — use Observations API (LFUSE-1)
+            params["type"] = "GENERATION"
+            resp = await client.get("/api/public/observations", params=params)
             duration = time.perf_counter() - t0
             data = resp.json()
             generations = data.get("data", [])
@@ -118,8 +120,10 @@ def register(mcp) -> None:
             total_items = 0
             pages_fetched = 0
 
+            # /api/public/generations removed in Langfuse v3 — use Observations API (LFUSE-1)
+            params["type"] = "GENERATION"
             while pages_fetched < _MAX_COST_PAGES:
-                resp = await client.get("/api/public/generations", params=params)
+                resp = await client.get("/api/public/observations", params=params)
                 data = resp.json()
                 generations = data.get("data", [])
                 meta = data.get("meta", {})
