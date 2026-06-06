@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2] — 2026-06-06
+
+### Fixed
+
+- **list_generations / get_cost_summary: 405 error** — `/api/public/generations` was removed
+  in Langfuse v3. Both tools now use `/api/public/observations?type=GENERATION`. Response
+  structure is identical so no downstream changes are required. Fixes LFUSE-1.
+
 ## [0.1.1] — 2026-05-27
 
 ### Fixed
